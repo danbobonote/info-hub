@@ -7,5 +7,21 @@
 <body>
   <h1>📰 My Information Hub</h1>
   <p>ここに最新ニュースやRSSを表示できます</p>
+  <ul id="rss-list"></ul>
+
+<script>
+  fetch("https://script.google.com/macros/s/XXXXXXXXXXXXXXXX/exec")  // GASのURLに置き換える
+    .then(response => response.json())
+    .then(data => {
+      const list = document.getElementById("rss-list");
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        list.appendChild(li);
+      });
+    })
+    .catch(err => console.error("取得失敗:", err));
+</script>
+
 </body>
 </html>
